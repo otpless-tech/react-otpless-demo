@@ -7,7 +7,6 @@ const EmailAuth = () => {
   const [OTPlessSignin, setOTPlessSignin] = useState(null);
 
   useEffect(() => {
-    // Load OTPless SDK script dynamically
     const script = document.createElement("script");
     script.id = "otpless-sdk";
     script.src = "https://otpless.com/v2/headless.js";
@@ -15,14 +14,12 @@ const EmailAuth = () => {
     script.onload = initializeSDK;
     document.head.appendChild(script);
 
-    // Cleanup function to remove the script when the component unmounts
     return () => {
       document.head.removeChild(script);
     };
   }, []);
 
   const initializeSDK = () => {
-    // Initialize OTPlessSignin once the SDK is loaded
     setOTPlessSignin(new window.OTPless());
   };
 
@@ -78,7 +75,7 @@ const EmailAuth = () => {
         <button onClick={handleEmailAuth}>Request OTP</button>
       </div>
 
-      <div id="otp-section" style={{ display: "none" }}>
+      <div id="otp-section">
         <input
           id="otp-input"
           type="text"
