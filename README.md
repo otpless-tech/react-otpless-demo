@@ -7,7 +7,7 @@
 1. **Create an App in [OTPless dashboard](https://otpless.com/dashboard/app) and copy the `APP ID`**
 2. **Add OTPLESS Script as a function**
 
-    > Add the following code to your utils/initOtpless.js in root directory.
+    > Add the following code to your Prebuilt/Prebuilt.jsx in root directory.
 
     ```js
     export const initOTPless = (callback) => {
@@ -32,7 +32,7 @@
 
     ```
 
-    > [view source](./src/utils/initOtpless.js#L1)
+    > [view source](./src/Prebuilt/Prebuilt.jsx#L1)
 
 3. **Load the script in Login/Signup component and add callback function**
 
@@ -47,7 +47,7 @@
     };
     ```
 
-    > [view source](./src/pages/Home.jsx#L8)
+    > [view source](./src/pages/HomePage/HomePage.jsx#L8)
 
 4. **Add Otpless-login-page div**
 
