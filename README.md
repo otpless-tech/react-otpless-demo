@@ -32,7 +32,7 @@
 
     ```
 
-    > [view source](./src/Prebuilt/Prebuilt.jsx#L1)
+   
 
 3. **Load the script in Login/Signup component and add callback function**
 
@@ -47,7 +47,7 @@
     };
     ```
 
-    > [view source](./src/pages/HomePage/HomePage.jsx#L8)
+   
 
 4. **Add Otpless-login-page div**
 
