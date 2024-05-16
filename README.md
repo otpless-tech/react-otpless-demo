@@ -82,7 +82,7 @@
     npm start
     ```
 
-- Open [localhost:5173](http://localhost:3000) in your browser
+- Open [localhost:3000](http://localhost:3000) in your browser
 - Switch branches to check out available options to integrate *OTPless* in your project
 
 ## *Thank You*
