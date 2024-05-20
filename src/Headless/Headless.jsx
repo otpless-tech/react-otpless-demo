@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EmailAuth from "./EmailAuth";
+import "./Headless.css";
 
 <EmailAuth />;
 
@@ -43,20 +44,33 @@ const Headless = () => {
   };
 
   const verifyOTP = async () => {
-    if (!OTPlessSignin) return;
+    console.log("Verifying OTP...");
+
+    if (!OTPlessSignin) {
+      console.error("OTPlessSignin is not initialized");
+      return;
+    }
 
     const phno = document.getElementById("mobile-input").value;
     const otp = document.getElementById("otp-input").value;
 
-    const res = await OTPlessSignin.verify({
-      channel: "PHONE",
-      phone: phno,
-      otp: otp,
-      countryCode: "+91",
-    });
+    console.log("Phone Number:", phno);
+    console.log("OTP:", otp);
 
-    alert(JSON.stringify(res));
-    handleResponse(res);
+    try {
+      const res = await OTPlessSignin.verify({
+        channel: "PHONE",
+        phone: phno,
+        otp: otp,
+        countryCode: "+91",
+      });
+
+      console.log("Verification Response:", res);
+      handleResponse(res);
+    } catch (error) {
+      console.error("Error verifying OTP:", error);
+      // Handle error if needed
+    }
   };
 
   const oAuth = async (params) => {
@@ -90,24 +104,89 @@ const Headless = () => {
 
   return (
     <>
-      <div id="mobile-section">
-        <input id="country-code-input" placeholder="Country Code" />
-        <input id="mobile-input" placeholder="Enter mobile number" />
-        <button onClick={phoneAuth}>Request OTP</button>
-      </div>
-      <div id="otp-section">
-        <input id="otp-input" placeholder="Enter OTP" />
-        <button onClick={verifyOTP}>Verify OTP</button>
-      </div>
-      {response && (
-        <div>
-          <h3>Response:</h3>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
-          <button onClick={copyResponse}>Copy Response</button>
+      <div
+        className="headless"
+        style={{ display: "flex", flexDirection: "column", gap: "20px" }}
+      >
+        <div id="mobile-section">
+          <input id="country-code-input" placeholder="Country Code" />
+          <input id="mobile-input" placeholder="Enter mobile number" />
+          <button
+            style={{
+              margin: "0px 10px",
+              padding: "12px 24px",
+              borderRadius: "5px",
+              fontWeight: "bold",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "16px",
+              transition: "background-color 0.3s",
+              boxShadow: "0px 2px 3px 0px",
+            }}
+            onClick={phoneAuth}
+          >
+            Request OTP
+          </button>
         </div>
-      )}
-      <button onClick={handleEmailAuthClick}>Email Authentication</button>
-      {activeComponent === "prebuilt" && <EmailAuth />}
+        <div id="otp-section">
+          <input id="otp-input" placeholder="Enter OTP" />
+          <button
+            style={{
+              margin: "0px 10px",
+              padding: "12px 24px",
+              borderRadius: "5px",
+              fontWeight: "bold",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "16px",
+              transition: "background-color 0.3s",
+              boxShadow: "0px 2px 3px 0px",
+            }}
+            onClick={verifyOTP}
+          >
+            Verify OTP
+          </button>
+        </div>
+        {response && (
+          <div className="response">
+            <h3>Response:</h3>
+            <button
+              style={{
+                margin: "0px 10px",
+                padding: "12px 24px",
+                borderRadius: "5px",
+                fontWeight: "bold",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s",
+                boxShadow: "0px 2px 3px 0px",
+              }}
+              onClick={copyResponse}
+            >
+              Copy Response
+            </button>
+            <pre>{JSON.stringify(response, null, 2)}</pre>
+          </div>
+        )}
+        <button
+          style={{
+            margin: "0px 10px",
+            padding: "12px 24px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "16px",
+            transition: "background-color 0.3s",
+            boxShadow: "0px 2px 3px 0px",
+          }}
+          onClick={handleEmailAuthClick}
+        >
+          Email Authentication
+        </button>
+        {activeComponent === "prebuilt" && <EmailAuth />}
+      </div>
     </>
   );
 };

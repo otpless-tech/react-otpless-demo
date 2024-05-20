@@ -23,29 +23,53 @@ const Prebuilt = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
-      <div id="otpless-login-page"></div>
-
-      {userInfo && (
-        <div style={{ marginLeft: "20px", overflow: "auto" }}>
-          <h2>User Information</h2>
-          <button onClick={copyResponse}>Copy Response</button>
+    <>
+      <div style={{ display: "flex" }}>
+        <div id="otpless-login-page"></div>
+        {userInfo && (
           <div
             style={{
-              maxHeight: "300px",
-              maxWidth: "400px",
-              overflowX: "auto",
-              overflowY: "auto",
-              border: "1px solid #ccc",
-              boxShadow: "0px 2px 3px 0px #ccc",
-              borderRadius: "10px",
+              marginLeft: "20px",
+              overflow: "auto",
+              gap: "20px",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+            <h2>User Information</h2>
+            <button
+              style={{
+                margin: "0px 10px",
+                padding: "12px 24px",
+                borderRadius: "5px",
+                fontWeight: "bold",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "16px",
+                transition: "background-color 0.3s",
+                boxShadow: "0px 2px 3px 0px",
+              }}
+              onClick={copyResponse}
+            >
+              Copy Response
+            </button>
+            <div
+              style={{
+                maxHeight: "450px",
+                maxWidth: "400px",
+                overflowX: "auto",
+                overflowY: "auto",
+                border: "1px solid #ccc",
+                boxShadow: "0px 2px 3px 0px #ccc",
+                borderRadius: "10px",
+              }}
+            >
+              <pre>{JSON.stringify(userInfo, null, 2)}</pre>
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 
