@@ -69,7 +69,6 @@ const Headless = () => {
       handleResponse(res);
     } catch (error) {
       console.error("Error verifying OTP:", error);
-      // Handle error if needed
     }
   };
 
@@ -130,23 +129,23 @@ const Headless = () => {
         </div>
         <div id="otp-section">
           <input id="otp-input" placeholder="Enter OTP" />
-          <button
-            style={{
-              margin: "0px 10px",
-              padding: "12px 24px",
-              borderRadius: "5px",
-              fontWeight: "bold",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "16px",
-              transition: "background-color 0.3s",
-              boxShadow: "0px 2px 3px 0px",
-            }}
-            onClick={verifyOTP}
-          >
-            Verify OTP
-          </button>
         </div>
+        <button
+          style={{
+            margin: "0px 10px",
+            padding: "12px 24px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "16px",
+            transition: "background-color 0.3s",
+            boxShadow: "0px 2px 3px 0px",
+          }}
+          onClick={verifyOTP}
+        >
+          Verify OTP
+        </button>
         {response && (
           <div className="response">
             <h3>Response:</h3>
@@ -184,6 +183,22 @@ const Headless = () => {
           onClick={handleEmailAuthClick}
         >
           Email Authentication
+        </button>
+        <button
+          style={{
+            margin: "0px 10px",
+            padding: "12px 24px",
+            borderRadius: "5px",
+            fontWeight: "bold",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "16px",
+            transition: "background-color 0.3s",
+            boxShadow: "0px 2px 3px 0px",
+          }}
+          onClick={verifyOTP}
+        >
+          Verify OTP
         </button>
         {activeComponent === "prebuilt" && <EmailAuth />}
       </div>
